@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minitest tuần 2</title>
+</head>
+<body>
+<p>Mảng cho trước là <br>
+array = [4, 13, 8, 9, 55, 60, 48, 41, 37, 54, 21, 93, 77, 87, 56, 91, 82, 33, 11, 32]
+</p>
+<h3>Bài 1</h3>
+<p>Số lượng số chẵn trong mảng trên là: <span id="even">...</span></p>
+<h3>Bài 2</h3>
+<label><input id="numA" type="number" placeholder="Nhập vào số a" onchange="findA()"/></label>
+<p>Số lượng phần tử có giá trị bằng <span id="refA">a</span> trong mảng trên là: <span id="countA">...</span></p>
+<h3>Bài 3</h3>
+<p>Tổng các số nguyên tố trong mảng trên là: <span id="primeSum">...</span></p>
+<h3>Bài 4</h3>
+<p>Tổng các số nguyên tố nhỏ hơn 500 là: <span id="prime500">...</span></p>
+</body>
+<script>
+    // Bài 1
+    let array = [4, 13, 8, 9, 55, 60, 48, 41, 37, 54, 21, 93, 77, 87, 56, 91, 82, 33, 11, 32];
+    let countEven = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 === 0) {
+            countEven++;
+        }
+    }
+    document.getElementById("even").innerText = countEven.toString();
+
+    // Bài 2
+    function findA() {
+        let countA = 0;
+        let numA = +document.getElementById("numA").value;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] === numA)
+                countA++;
+        }
+        document.getElementById("countA").innerText = countA.toString();
+        document.getElementById("refA").innerText = numA.toString();
+    }
+
+    // Bài 3
+    let primeSum = 0;
+    let countDiv = 0
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === 1) {
+            continue;
+        }else if (array[i] > 1) {
+            for (let j = 2; j < array[i]; j++) {
+                if (array[i] % j === 0) {
+                    countDiv++;
+                    break;
+                }
+            }
+            if (countDiv === 0) {
+                primeSum += array[i];
+            }
+        }
+        countDiv = 0;
+    }
+    document.getElementById("primeSum").innerText = primeSum;
+
+    // Bài 4
+    let primeSum500 = 0;
+    let countDiv500 = 0
+    for (let i = 1; i < 500; i++) {
+        if (i === 1) {
+            continue;
+        }else if (i > 1) {
+            for (let j = 2; j < i; j++) {
+                if (i % j === 0) {
+                    countDiv500++;
+                    break;
+                }
+            }
+            if (countDiv500 === 0) {
+                primeSum500 += i;
+            }
+        }
+        countDiv500 = 0;
+    }
+    document.getElementById("prime500").innerText = primeSum500;
+
+</script>
+</html>
